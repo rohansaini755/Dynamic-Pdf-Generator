@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        .header-table td {
+            font-size: 14px;
+        }
+        .items-table th, .items-table td {
+            text-align: center;
+        }
+        .seller, .buyer {
+            width: 50%;
+            vertical-align: top;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Seller and Buyer Information -->
+<table class="header-table">
+    <tr>
+        <td class="seller">
+            <strong>Seller:</strong><br>
+            <span th:text="${invoice.seller}"></span><br>
+            <span th:text="${invoice.sellerAddress}"></span><br>
+            GSTIN: <span th:text="${invoice.sellerGstin}"></span>
+        </td>
+        <td class="buyer">
+            <strong>Buyer:</strong><br>
+            <span th:text="${invoice.buyer}"></span><br>
+            <span th:text="${invoice.buyerAddress}"></span><br>
+            GSTIN: <span th:text="${invoice.buyerGstin}"></span>
+        </td>
+    </tr>
+</table>
+
+<!-- Items Table -->
+<table class="items-table">
+    <thead>
+    <tr>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Rate</th>
+        <th>Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Dynamically iterate through the items -->
+    <tr th:each="item : ${invoice.items}">
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.quantity}"></td>
+        <td th:text="${item.rate}"></td>
+        <td th:text="${item.amount}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
