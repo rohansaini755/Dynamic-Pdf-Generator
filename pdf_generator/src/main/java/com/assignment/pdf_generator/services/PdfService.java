@@ -17,6 +17,8 @@ import java.nio.file.Paths;
 public class PdfService {
     private static long uniq_id = 0;
 
+
+    //fetching location to store the pdf file in local storge
     @Value("${pdf.storage.location}")
     private String pdfStorageLocation;
 
@@ -49,10 +51,12 @@ public class PdfService {
         return pdfFilename;
     }
 
+    //Geting file content of prestored file
     public byte[] getPdfContent(String pdfFilename) throws IOException {
         return Files.readAllBytes(Paths.get(pdfStorageLocation + pdfFilename));
     }
 
+    //generating unique file name
     private String getFileNameForInvoice(Invoice invoice) {
         // Create a unique filename using the buyer name and a UUID to prevent collisions
         int hc = invoice.hashCode();
