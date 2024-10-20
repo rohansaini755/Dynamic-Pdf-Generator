@@ -15,6 +15,7 @@ import java.io.IOException;
 public class PdfController {
 
     private final PdfService pdfService;
+    // To check the health of the application
     @GetMapping("health-check")
     public String health_check(){return "All fine with pdf generator";}
 
@@ -22,6 +23,8 @@ public class PdfController {
         this.pdfService = pdfService;
     }
 
+
+    //To generate the pdf using given information
     @PostMapping("/generate-pdf")
     public ResponseEntity<String> generatePdf(@RequestBody Invoice invoice) {
         try {
@@ -33,6 +36,8 @@ public class PdfController {
         }
     }
 
+
+    //To download the pdf using pdf name
     @GetMapping("/download/{pdfFilename}")
     public ResponseEntity<StreamingResponseBody> downloadPdf(@PathVariable String pdfFilename) {
         try {
